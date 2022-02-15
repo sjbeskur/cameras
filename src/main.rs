@@ -3,7 +3,6 @@ use camera_models::cameras::{Camera, PinholeCamera, Projection};
 use nalgebra::Matrix3x4;
 
 fn main() {
-    // Parses and executes the target subcommand (e.g filter, centriod)
     let cam = Camera::default();
 
     let mut mtx = Matrix3x4::new(
