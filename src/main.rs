@@ -7,10 +7,6 @@ fn main() {
     // Parses and executes the target subcommand (e.g filter, centriod)
     let cam = cameras::Camera::default();
 
-    //println!("{:?}", cam);
-    //println!("{:#?}", cam);
-    //println!("{}", cam.get_intrinsics());
-
     let mut mtx = Matrix3x4::new(
         1.0, 0.0, 0.0, 0.069266, 
         0.0, 1.0, 0.0, -0.129384, 
