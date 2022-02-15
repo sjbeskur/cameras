@@ -1,11 +1,10 @@
-use camera_models::cameras;
-use camera_models::cameras::{PinholeCamera, Projection};
+use camera_models::cameras::{Camera, PinholeCamera, Projection};
 
 use nalgebra::Matrix3x4;
 
 fn main() {
     // Parses and executes the target subcommand (e.g filter, centriod)
-    let cam = cameras::Camera::default();
+    let cam = Camera::default();
 
     let mut mtx = Matrix3x4::new(
         1.0, 0.0, 0.0, 0.069266, 
@@ -13,7 +12,7 @@ fn main() {
         1.0, 0.0, 1.0, 0.026577,
     );
 
-    let cam0 = cameras::Camera::new(mtx);
+    let cam0 =Camera::new(mtx);
 
     let pinhole_cameras: Vec<&dyn PinholeCamera> = vec![&cam, &cam0];
     for p in pinhole_cameras {
