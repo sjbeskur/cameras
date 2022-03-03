@@ -1,13 +1,14 @@
-use nalgebra::{Matrix3x4, Point2};
+use nalgebra::{Matrix3x4, Point2, Matrix3};
 use std::fmt;
 
 #[derive(Debug)]
 pub struct Camera {
-    pub(crate) intrinsic_mtx: Matrix3x4<f32>,
+    pub(crate) intrinsic_mtx: Matrix3<f32>,
+    //pub(crate) extrinsic_mtx: Matrix3x4<f32>,
 }
 
 impl Camera {
-    pub fn new(intrinsic_mtx: Matrix3x4<f32>) -> Self {
+    pub fn new(intrinsic_mtx: Matrix3<f32>) -> Self {
         Self {
             intrinsic_mtx: intrinsic_mtx,
         }
@@ -17,7 +18,7 @@ impl Camera {
         "default".to_string()
     }
 
-    pub fn get_intrinsics(&self) -> Matrix3x4<f32> {
+    pub fn get_intrinsics(&self) -> Matrix3<f32> {
         self.intrinsic_mtx
     }
 
@@ -41,9 +42,20 @@ impl Camera {
 impl Default for Camera {
     fn default() -> Self {
         Self {
-            intrinsic_mtx: Matrix3x4::new(
-                1.0, 0.0, 0.0, 0.069266, 0.0, 1.0, 0.0, -0.129384, 1.0, 0.0, 1.0, 0.026577,
+            intrinsic_mtx: Matrix3::new(
+                31818.1818, 0.0, 1295.5,
+                0.0, 31818.1818, 971.5,
+                0.0, 0.0, 1.0,
             ),
+
+            // extrinsic_mtx: Matrix4x4::new(
+            //     1, 0, 0,  0.069266 ,
+            //     0, 1, 0, -0.129384 ,
+            //     0, 0, 1, -0.026577 ,
+            //     0, 0, 0, 1
+            // )
+                     
+
         }
     }
 }
