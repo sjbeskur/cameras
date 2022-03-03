@@ -9,7 +9,7 @@ pub trait PinholeCamera {
 
 impl PinholeCamera for Camera {
     fn get_extrinsic(&self) -> f32 {
-        return self.intrinsic_mtx[(0, 3)];
+        return self.intrinsic_mtx[(0, 2)];
     }
 }
 

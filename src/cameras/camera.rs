@@ -16,6 +16,7 @@ impl Camera {
 
     pub fn get_type() -> String {
         "default".to_string()
+        
     }
 
     pub fn get_intrinsics(&self) -> Matrix3<f32> {
