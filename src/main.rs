@@ -1,9 +1,9 @@
-use camera_models::cameras::{Camera, PinholeCamera, Projection};
+use camera_models::cameras::{PinholeCamera, Projection};
 
 use nalgebra::{Matrix3x4, Matrix3 };
 
 fn main() {
-    let cam = Camera::default();
+    let cam = PinholeCamera::default();
 
 
     let k_mtx = Matrix3::new(
@@ -19,9 +19,10 @@ fn main() {
     );
     println!("{}",_t1);
 
-    let cam0 =Camera::new(k_mtx);
+    let cam0 =PinholeCamera::new(k_mtx);
 
-    let pinhole_cameras: Vec<&dyn PinholeCamera> = vec![&cam, &cam0];
+    //let pinhole_cameras: Vec<&dyn PinholeCamera> = vec![&cam, &cam0];
+    let pinhole_cameras: Vec<&PinholeCamera> = vec![&cam, &cam0];
     for p in pinhole_cameras {
         println!("{}", p);
     }

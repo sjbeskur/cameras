@@ -1,13 +1,15 @@
 use nalgebra::{Matrix3x4, Point2, Matrix3};
 use std::fmt;
 
+pub trait PinholeModel { }
+
 #[derive(Debug)]
-pub struct Camera {
+pub struct PinholeCamera {
     pub(crate) intrinsic_mtx: Matrix3<f32>,
     //pub(crate) extrinsic_mtx: Matrix3x4<f32>,
 }
 
-impl Camera {
+impl PinholeCamera {
     pub fn new(intrinsic_mtx: Matrix3<f32>) -> Self {
         Self {
             intrinsic_mtx: intrinsic_mtx,
@@ -39,7 +41,7 @@ impl Camera {
     }
 }
 
-impl Default for Camera {
+impl Default for PinholeCamera {
     fn default() -> Self {
         Self {
             intrinsic_mtx: Matrix3::new(
@@ -60,14 +62,14 @@ impl Default for Camera {
     }
 }
 
-impl fmt::Display for Camera {
+impl fmt::Display for PinholeCamera {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.intrinsic_mtx)
     }
 }
 
-impl PartialEq for Camera {
-    fn eq(&self, other: &Camera) -> bool {
+impl PartialEq for PinholeCamera {
+    fn eq(&self, other: &PinholeCamera) -> bool {
         self.intrinsic_mtx == other.intrinsic_mtx
     }
 }
@@ -77,7 +79,7 @@ pub trait Projection {
     fn unproject(&self);
 }
 
-impl Projection for Camera {
+impl Projection for PinholeCamera {
     fn project(&self) {
         println!("Project NOT YET implemented :D")
     }
