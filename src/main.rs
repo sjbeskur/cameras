@@ -1,4 +1,4 @@
-use camera_models::cameras::{PinholeCamera, Projection};
+use camera_models::cameras::{PinholeCamera, Perspective};
 
 use nalgebra::{Matrix3x4, Matrix3 };
 
@@ -27,7 +27,6 @@ fn main() {
         println!("{}", p);
     }
 
-    cam0.project();
 }
 
 

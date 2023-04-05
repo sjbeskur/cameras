@@ -1,4 +1,4 @@
-use nalgebra::{Matrix3x4, Point2, Matrix3};
+use nalgebra::{Matrix3x4, Point2, Point3, Matrix3};
 use std::fmt;
 
 pub trait PinholeModel { }
@@ -74,14 +74,16 @@ impl PartialEq for PinholeCamera {
     }
 }
 
-pub trait Projection {
-    fn project(&self);
+pub trait Perspective {
+    fn project(&self, world_point: Point3<f32>) -> Point2<f32>;
     fn unproject(&self);
 }
 
-impl Projection for PinholeCamera {
-    fn project(&self) {
-        println!("Project NOT YET implemented :D")
+impl Perspective for PinholeCamera {
+
+    fn project(&self, world_point: Point3<f32>) -> Point2<f32>{
+        let rslt = &self.intrinsic_mtx * world_point;
+        Point2::new(rslt[0]/rslt[2], rslt[1]/rslt[2])
     }
 
     fn unproject(&self) {
