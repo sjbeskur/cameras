@@ -74,24 +74,4 @@ impl PartialEq for PinholeCamera {
     }
 }
 
-pub trait Perspective {
-    fn project(&self, world_point: Point3<f32>) -> Point2<f32>;
-    fn unproject(&self, uv: Point2<f32>) -> Point3<f32>;
-}
 
-impl Perspective for PinholeCamera {
-
-    /// Fix math 
-    fn project(&self, world_point: Point3<f32>) -> Point2<f32>{
-        let rslt = &self.intrinsic_mtx * world_point;
-        Point2::new(rslt[0]/rslt[2], rslt[1]/rslt[2])
-    }
-
-    /// Fix math 
-    fn unproject(&self, uv: Point2<f32>) -> Point3<f32>{
-        let kinv = &self.intrinsic_mtx.try_inverse().unwrap();
-        let homogeneous = uv.to_homogeneous();
-        let coords = kinv * homogeneous;
-        Point3::from(coords)
-    }
-}

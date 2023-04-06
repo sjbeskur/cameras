@@ -1,4 +1,4 @@
-use camera_models::cameras::{PinholeCamera, Perspective};
+use camera_models::cameras::{PinholeCamera, PerspectiveProjection};
 
 use nalgebra::{Matrix3x4, Matrix3 };
 

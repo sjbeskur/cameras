@@ -7,5 +7,7 @@
 //! 
 
 mod camera;
+mod perspective_projection;
 
 pub use camera::*;
+pub use perspective_projection::*;
