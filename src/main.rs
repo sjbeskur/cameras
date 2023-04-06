@@ -3,7 +3,14 @@ use camera_models::cameras::{PinholeCamera, PerspectiveProjection};
 use nalgebra::{Matrix3x4, Matrix3 };
 
 fn main() {
-    let cam = PinholeCamera::default();
+
+    let k = Matrix3::new(
+        31818.1818, 0.0, 1295.5,
+        0.0, 31818.1818, 971.5,
+        0.0, 0.0, 1.0,
+    );
+
+    let cam = PinholeCamera::new(k);
 
 
     let k_mtx = Matrix3::new(
