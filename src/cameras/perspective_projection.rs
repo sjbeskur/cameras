@@ -7,7 +7,7 @@ pub trait PerspectiveProjection {
     fn unproject(&self, uv: &Point2<f32>) -> Point3<f32>;
 }
 pub trait LinearizeProjection {
-    fn project_linearize(&self, world_point: &SMatrix<f32, 3,1>, jacobian: &mut SMatrix<f32, 2,3>) -> Point2<f32>;
+    fn project_linearize(&self, world_point: &SMatrix<f32, 3,1>, jacobian: &mut SMatrix<f32, 2,3>) -> SMatrix<f32, 3,1>;
     //fn unproject(&self, uv: &Point2<f32>) -> Point3<f32>;
 }
 
