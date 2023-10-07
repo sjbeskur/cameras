@@ -2,7 +2,8 @@ use nalgebra::{ Point2, Point3, SMatrix };
 use super::PinholeCamera;
 
 pub trait PerspectiveProjection {
-    fn project(&self, world_point: &Point3<f32>) -> Point2<f32>;
+    fn project(&self, world_point: &SMatrix<f32, 3,1>) -> SMatrix<f32, 2,1>;
+    fn project_point(&self, world_point: &Point3<f32>) -> Point2<f32>;
     fn unproject(&self, uv: &Point2<f32>) -> Point3<f32>;
 }
 pub trait LinearizeProjection {
@@ -15,7 +16,12 @@ pub trait LinearizeProjection {
 impl PerspectiveProjection for PinholeCamera {
 
     /// Double check the math 
-    fn project(&self, world_point: &Point3<f32>) -> Point2<f32>{
+    fn project(&self, world_point: &SMatrix<f32, 3,1>) -> SMatrix<f32,2,1>{
+        let rslt = &self.k * world_point;
+        SMatrix::<f32, 2,1>::new(rslt.x /rslt.z, rslt.y/rslt.z)
+    }
+
+    fn project_point(&self, world_point: &Point3<f32>) -> Point2<f32>{
         let rslt = &self.k * world_point;
         Point2::new(rslt.x /rslt.z, rslt.y/rslt.z)
     }
