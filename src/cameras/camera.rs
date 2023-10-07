@@ -15,7 +15,7 @@ impl PinholeCamera {
     pub fn new(intrinsics: Matrix3<f32>) -> Self {
         Self {
             k: intrinsics,
-            kinv: intrinsics.try_inverse().unwrap(),
+            kinv: intrinsics.try_inverse().expect("not a square matrix"), // panics if self is not a square matrix 
         }
     }
 
