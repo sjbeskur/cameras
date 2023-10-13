@@ -42,6 +42,16 @@ impl PinholeCamera {
     pub fn principal_point(&self) -> Point2<f32> {
         self.optical_center()
     }
+
+
+    ///
+    /// The camera projection matrix (P) is calculated using the following formula:
+    /// ```
+    /// P = K * [R|t]
+    /// ```
+    pub fn calc_projection_matrix() -> Matrix3x4<f32>{
+        todo!("P = K * [R|t]")
+    }
 }
 
 
